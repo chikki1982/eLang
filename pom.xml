@@ -3,6 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <prerequisites>
+  	<!-- Tycho requires Maven 3 -->
     <maven>3.0</maven>
   </prerequisites>
 
@@ -84,9 +85,22 @@
 	    	<enabled>true</enabled>
 	    </snapshots>
 	  </pluginRepository>
+	  <pluginRepository>
+		<id>xtend</id>
+		<url>http://build.eclipse.org/common/xtend/maven/</url>
+	</pluginRepository>
   </pluginRepositories>
 
 	<repositories>
+	  <!-- Maven -->
+		<repository>
+			<id>maven.eclipse.org</id>
+			<url>http://maven.eclipse.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>xtend</id>
+			<url>http://build.eclipse.org/common/xtend/maven/</url>
+		</repository>
 	  <repository>
 	    <id>fornax-releases</id>
 	    <url>http://fornax.itemis.de/nexus/content/repositories/public/</url>
@@ -94,7 +108,9 @@
 	    	<enabled>false</enabled>
 	    </snapshots>
 	  </repository>
-		<repository>
+	  
+	  <!-- P2 -->
+	  <repository>
       <id>Eclipse Orbit</id>
       <layout>p2</layout>
       <url>http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/</url>
