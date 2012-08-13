@@ -115,12 +115,13 @@
 					<configuration>
 	                                        <outputDirectory>${basedir}/xtend-gen</outputDirectory>
 	                                </configuration>
+
 					<dependencies>
 	                                        <dependency>
 	                                                <groupId>org.eclipse.xtend</groupId>
 	                                                <artifactId>org.eclipse.xtend.lib</artifactId>
 	                                                <version>${xtext-version}</version>
-	                                                <!--<type>pom</type>-->
+	                                                <!-- <type>pom</type> -->
 	                                        </dependency>
 
 						<dependency>
@@ -129,10 +130,19 @@
 							<version>10.0.1</version>
 						</dependency>
 	                                </dependencies>
+
 				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<dependencies>
+	        <dependency>
+	                <groupId>org.eclipse.xtend</groupId>
+	                <artifactId>org.eclipse.xtend.lib</artifactId>
+	                <version>${xtext-version}</version>
+	        </dependency>
+	</dependencies>
 
 	<pluginRepositories>
 		<pluginRepository>
