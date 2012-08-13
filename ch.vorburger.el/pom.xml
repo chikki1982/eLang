@@ -34,11 +34,16 @@
 	        </execution>
 	      </executions>
 	    </plugin>
+
+	    <plugin>
+	      <groupId>org.eclipse.xtend</groupId>
+	        <artifactId>xtend-maven-plugin</artifactId>
+	    </plugin>
+
 	  </plugins>
+
 	  <resources>
     	<resource><directory>src</directory></resource>
-      <resource><directory>xtend-gen</directory></resource>
-      <resource><directory>src-gen</directory></resource>
   	</resources>
 	</build>
 </project>

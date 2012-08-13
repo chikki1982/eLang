@@ -17,6 +17,7 @@
 	<description>This is an Expression Language, with Grammar / Parser (ANTLR) / Interpreter RT / (TBD) Compiler for both on-the-fly on run time and build/compile time.</description>
 
 	<properties>
+		<xtext-version>2.3.0</xtext-version> <!-- This is just for the xtend-maven-plugin - also check MANIFEST.MF... -->
 		<tycho-version>0.15.0</tycho-version>
 		<tycho-groupid>org.eclipse.tycho</tycho-groupid>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,6 +51,28 @@
 					<pomDependencies>consider</pomDependencies>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src-gen</directory>
+							<includes>
+								<include>**</include>
+							</includes>
+						</fileset>
+						<fileset>
+							<directory>xtend-gen</directory>
+							<includes>
+								<include>**</include>
+							</includes>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
 		</plugins>
 
 		<pluginManagement>
@@ -63,6 +86,49 @@
 						<source>1.6</source>
 						<target>1.6</target>
 					</configuration>
+				</plugin>
+				<plugin>
+	                                <groupId>org.eclipse.tycho</groupId>
+	                                <artifactId>tycho-source-plugin</artifactId>
+	                                <version>${tycho-version}</version>
+	                                <executions>
+	                                        <execution>
+	                                                <id>attach-source</id>
+	                                                <goals>
+	                                                        <goal>plugin-source</goal>
+	                                                </goals>
+	                                        </execution>
+	                                </executions>
+                        	</plugin>
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtext-version}</version>
+				        <executions>
+				          <execution>
+				          <phase>generate-sources</phase>
+				          <goals>
+				          	<goal>compile</goal>
+				          </goals>
+				        </execution>
+				      </executions>
+					<configuration>
+	                                        <outputDirectory>${basedir}/xtend-gen</outputDirectory>
+	                                </configuration>
+					<dependencies>
+	                                        <dependency>
+	                                                <groupId>org.eclipse.xtend</groupId>
+	                                                <artifactId>org.eclipse.xtend.lib</artifactId>
+	                                                <version>${xtext-version}</version>
+	                                                <!--<type>pom</type>-->
+	                                        </dependency>
+
+						<dependency>
+							<groupId>com.google.guava</groupId>
+							<artifactId>guava</artifactId>
+							<version>10.0.1</version>
+						</dependency>
+	                                </dependencies>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -86,9 +152,20 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<id>xtend</id>
+			<url>http://build.eclipse.org/common/xtend/maven/</url>
+		</pluginRepository>
 	</pluginRepositories>
 
 	<repositories>
+		<repository>
+			<id>xtend</id>
+			<url>http://build.eclipse.org/common/xtend/maven/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 		<repository>
 			<id>fornax-releases</id>
 			<url>http://fornax.itemis.de/nexus/content/repositories/public/</url>
